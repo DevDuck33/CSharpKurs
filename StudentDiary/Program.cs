@@ -21,7 +21,7 @@ namespace StudentDiary
 
                 if (Rating > 10 || Rating < 1)
                 {
-                    Console.WriteLine("Zakończyłeś wprowadzanie");
+                    Console.WriteLine("Zakończyłeś wprowadzanie" + "\n");
                     break;
                 }
                 else
@@ -33,13 +33,25 @@ namespace StudentDiary
                 }
 
             }
-            float Average = Diary.CalculateAverage();
-            float Max = Diary.GiveMaxRating();
-            float Min = Diary.GiveMinRating();
 
-            Console.WriteLine("Średnia ocen to: " + Average);
-            Console.WriteLine("Najwyższa ocena to: " + Max);
-            Console.WriteLine("Najniższa ocena to: " + Min);
+            DiaryStatistics Stats = Diary.ComputeStatistics();      //Tworzymy nową zmienną klasy DiaryStatistics i przypisujemy jej wyniki obliczeń z Klasy Diary
+
+            Console.WriteLine("Średnia ocen to: " + Stats.AverageGrade);
+            Console.WriteLine("Najwyższa ocena to: " + Stats.MaxGrade);
+            Console.WriteLine("Najniższa ocena to: " + Stats.MinGrade);
+
+            Console.WriteLine("\n"+"Twój znajomy miał: ");
+            Diary Diary2 = new Diary();     //Tworzymy kolejną inswtancje klasy Dairy
+
+            Diary2.AddRating(1);
+            Diary2.AddRating(10);
+            Diary2.AddRating(9);
+
+            Stats = Diary2.ComputeStatistics();     //Przypisujemy nowe wartości zmiennej Stats i wykonujemy na nich obliczenia
+
+            Console.WriteLine("Średnia ocen to: " + Stats.AverageGrade);
+            Console.WriteLine("Najwyższa ocena to: " + Stats.MaxGrade);
+            Console.WriteLine("Najniższa ocena to: " + Stats.MinGrade);
             Console.ReadKey();
         }
     }

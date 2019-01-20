@@ -18,26 +18,23 @@ namespace StudentDiary
             Ratings.Add(Rating);
         }
 
-        public float CalculateAverage()
+        internal DiaryStatistics ComputeStatistics()
         {
-            float Sum = 0, Avg = 0;
+            DiaryStatistics Stats = new DiaryStatistics();
+
+            float Sum = 0;
+
             foreach (var Rating in Ratings)     //Dla każdego elementu z Ratings
             {
                 Sum += Rating;
             }
 
-            Avg = Sum / Ratings.Count();        //Count da nam ilość elementów w kolekcji
-            return Avg;
-        }
+            Stats.AverageGrade = Sum / Ratings.Count();
 
-        public float GiveMaxRating()
-        {
-            return Ratings.Max();       //Zwraca największy element na liście
-        }
+            Stats.MaxGrade = Ratings.Max();     //Największa watrość
+            Stats.MinGrade = Ratings.Min();     //Najmniejsza watrość
 
-        public float GiveMinRating()
-        {
-            return Ratings.Min();       //Zwraca najmniejszy element na liście
+            return Stats;
         }
     }
 }
